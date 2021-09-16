@@ -55,7 +55,7 @@
             @Html.LabelFor(model => model.DataInicio, "Inicio", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.DataInicio, new { htmlAttributes = new { @class = "datepicker" } })
-                @Html.ValidationMessageFor(model => model.DataInicio, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.DataInicio, "Data de Inicio necessária", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -65,7 +65,7 @@
             @Html.LabelFor(model => model.DataFim, "Fim", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.DataFim, new { htmlAttributes = new { @class = "datepicker" } })
-                @Html.ValidationMessageFor(model => model.DataFim, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.DataFim, "Data de término necessária", new { @class = "text-danger" })
             </div>
         </div>
 

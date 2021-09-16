@@ -74,7 +74,7 @@
             @Html.LabelFor(model => model.DataDeCriaçao, "Data de Criação", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.DataDeCriaçao, new { htmlAttributes = new { @class = "datepicker" } })
-                @Html.ValidationMessageFor(model => model.DataDeCriaçao, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.DataDeCriaçao, " Data de criação necessária", new { @class = "text-danger" })
             </div>
         </div>
 
