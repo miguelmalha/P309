@@ -1,0 +1,73 @@
+﻿@model P309.Models.Eventos
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<h2>Detalhes do evento</h2>
+
+@*
+    DisplayNameFor() - Nome de exibição do modelo
+    DisplayFor() - exibição do valor do campo
+    ActionLink()  - retorna para a ação inserida
+*@
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            Inicio  @* Martelado pois DisplayFor não permite escolher um nome para o item a mostrar *@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataInicio)
+        </dd>
+
+        <dt>
+            Fim  @* Martelado pois DisplayFor não permite escolher um nome para o item a mostrar *@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataFim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Link)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Link)
+        </dd>
+
+        <dt>
+            Localização  @* Martelado pois DisplayFor não permite escolher um nome para o item a mostrar *@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Localizacao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notas)
+        </dd>
+
+    </dl>
+</div>
+
+@* Botões pata editar e voltar *@
+<p>
+    @Html.ActionLink("Editar", "Editar", new { id = Model.ID }) |
+    @Html.ActionLink("Voltar", "Index")
+</p>

@@ -1,0 +1,157 @@
+﻿@model P309.Models.Empresas
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<h2>Detalhes da empresa</h2>
+
+@*
+    DisplayNameFor() - Nome de exibição do modelo
+    DisplayFor() - exibição do valor do campo
+    ActionLink()  - retorna para a ação inserida
+*@
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NIF)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NIF)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Endereço)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Endereço)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.País)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.País)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Localidade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Localidade)
+        </dd>
+
+        <dt>
+            Código-Postal @* Martelado pois DisplayFor não permite escolher um nome para o item a mostrar *@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CódigoPostal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Site)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Site)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IBAN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IBAN)
+        </dd>
+
+        <dt>
+            Meio de Pagamento @* Martelado pois DisplayFor não permite escolher um nome para o item a mostrar *@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MeioDePagamento)
+        </dd>
+
+        <dt>
+            Prazo de Pagamento @* Martelado pois DisplayFor não permite escolher um nome para o item a mostrar *@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrazoDePagamento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notas)
+        </dd>
+
+        @* Tabela para mostrar os contactos associados à empresa *@
+        <dt>
+            Contactos associados
+        </dt>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                </tr>
+                @foreach (var item in Model.Contactos)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Telefone)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+
+    </dl>
+</div>
+
+@* Botões para editar e voltar *@
+<p>
+    @Html.ActionLink("Editar", "Editar", new { id = Model.NIF }) |
+    @Html.ActionLink("Voltar", "Index")
+</p>

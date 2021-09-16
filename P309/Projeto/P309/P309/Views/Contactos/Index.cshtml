@@ -1,0 +1,110 @@
+﻿@model PagedList.IPagedList<P309.Models.Contactos>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@*
+    BeginForm() - Criação de um formulário para aceitar dados do utilizador. Utilização do método POST e processamento realizado pelo método de ação do controlador
+    ActionLink() - retorna para a ação inserida
+    TextBox() - Campo para inserção de um atributo do tipo texto
+    DisplayFor() - exibição do valor do campo
+    PagedListPager() - faz o output da paginação
+*@
+
+<h2>Contactos</h2>
+
+@* Link para adicionar novo contacto  *@
+<p>
+    @Html.ActionLink("Adicionar novo contacto", "Criar")
+</p>
+
+@using (Html.BeginForm("Index", "Contactos", FormMethod.Get))
+{
+    @* campo para caixa de pesquisa  *@
+    <p>
+        Pesquisar por contacto: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Pesquisar" />
+    </p>
+}
+
+<table class="table">
+    @* Os campos seguintes utilizam ViewBags do controlador para definir os os filtros e ordenações  *@
+    <tr>
+        <th>
+            @Html.ActionLink("Nome", "Index", new { sortOrder = ViewBag.NomeSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Email", "Index", new { sortOrder = ViewBag.EmailSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Telefone", "Index", new { sortOrder = ViewBag.TelefoneSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Empresa", "Index", new { sortOrder = ViewBag.EmpresaSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("NIF empresa", "Index", new { sortOrder = ViewBag.NIFEmpresaSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Email empresa", "Index", new { sortOrder = ViewBag.EmailEmpresaSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Site empresa", "Index", new { sortOrder = ViewBag.SiteEmpresaSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("IBAN empresa", "Index", new { sortOrder = ViewBag.IBANEmpresaSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Notas", "Index", new { sortOrder = ViewBag.NotasSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Empresa.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Empresa.NIF)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Empresa.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Empresa.Site)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Empresa.IBAN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notas)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Editar", new { id = item.ID }) |
+                @Html.ActionLink("Detalhes", "Detalhes", new { id = item.ID }) |
+                @Html.ActionLink("Eliminar", "Eliminar", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@* Código correspondente à view da paginação *@
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+

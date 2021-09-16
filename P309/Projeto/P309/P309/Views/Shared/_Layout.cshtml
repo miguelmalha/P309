@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/themes/base/all.css" rel="stylesheet" />
+    <title>@ViewBag.Title Mini CRM</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    @if (!Request.Path.ToString().Equals("/")) //Esconder o Menu da página de Login
+    {
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li style="padding-top: 15px;padding-bottom: 15px;color: #9d9d9d;">
+                            Mini CRM
+                        </li>
+                        <li>@Html.ActionLink("Página Inicial", "Index", "Inicio")</li>
+                        <li>@Html.ActionLink("Contactos", "Index", "Contactos")</li>
+                        <li>@Html.ActionLink("Empresas", "Index", "Empresas")</li>
+                        <li>@Html.ActionLink("Projetos", "Index", "Projetos")</li>
+                        <li>@Html.ActionLink("Eventos", "Index", "Eventos")</li>
+
+                        @{int RoleUtilizador = (int)Session["RoleUtilizador"]; //Saber a Role do utilizador que está Logado
+                        }
+                        @if (RoleUtilizador == 0) //Comparar a Role com a do administrador (0) e mostrar, ou não, a página de acessos
+                        {
+                            <li>@Html.ActionLink("Acessos", "Acessos", "Contas")</li>
+                        }
+                        <li>@Html.ActionLink("Perfil", "Perfil", "Contas")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    }
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Mini CRM</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @section Scripts
+        {
+        @Scripts.Render("~/bundles/jqueryui")
+        @Styles.Render("~/Content/cssjqryUi")
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('input[type=datetime]').datepicker(
+                    {
+                        dateFormat: "dd/M/yy",
+                        changeMonth: true,
+                        changeYear: true,
+                        yearRange: "-60:+0"
+                    }
+                );
+            });
+        </script>
+    }
+
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

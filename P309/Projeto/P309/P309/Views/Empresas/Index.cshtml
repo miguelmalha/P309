@@ -1,0 +1,133 @@
+﻿@model PagedList.IPagedList<P309.Models.Empresas>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Empresas</h2>
+
+@*
+    BeginForm() - Criação de um formulário para aceitar dados do utilizador. Utilização do método POST e processamento realizado pelo método de ação do controlador
+    ActionLink() - retorna para a ação inserida
+    TextBox() - Campo para inserção de um atributo do tipo texto
+    DisplayFor() - exibição do valor do campo
+    PagedListPager() - faz o output da paginação
+*@
+
+@* Link para adicionar nova empresa  *@
+<p>
+    @Html.ActionLink("Adicionar nova empresa", "Criar")
+</p>
+
+@* campo para caixa de pesquisa  *@
+@using (Html.BeginForm("Index", "Empresas", FormMethod.Get))
+{
+    <p>
+        Pesquisar por empresa: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Pesquisar" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @* Os campos seguintes utilizam ViewBags do controlador para definir os os filtros e ordenações  *@
+            @Html.ActionLink("Nome", "Index", new { sortOrder = ViewBag.NomeSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("NIF", "Index", new { sortOrder = ViewBag.NIFSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Endereço", "Index", new { sortOrder = ViewBag.EnderecoSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("País", "Index", new { sortOrder = ViewBag.PaisSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Localidade", "Index", new { sortOrder = ViewBag.LocalidadeSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Código-Postal", "Index", new { sortOrder = ViewBag.CodigoPostalSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Site", "Index", new { sortOrder = ViewBag.SiteSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Email", "Index", new { sortOrder = ViewBag.EmailSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Telefone", "Index", new { sortOrder = ViewBag.TelefoneSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("IBAN", "Index", new { sortOrder = ViewBag.IBANSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Meio de Pagamento", "Index", new { sortOrder = ViewBag.MeioDePagamentoSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Prazo de Pagamento", "Index", new { sortOrder = ViewBag.PrazoDePagamentoSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Notas", "Index", new { sortOrder = ViewBag.NotasSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NIF)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Endereço)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.País)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Localidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CódigoPostal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Site)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IBAN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MeioDePagamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrazoDePagamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notas)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Editar", new { id = item.NIF }) |
+                @Html.ActionLink("Detalhes", "Detalhes", new { id = item.NIF }) |
+                @Html.ActionLink("Eliminar", "Eliminar", new { id = item.NIF })
+            </td>
+        </tr>
+    }
+</table>
+
+@* Código correspondente à view da paginação *@
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+

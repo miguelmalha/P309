@@ -1,0 +1,80 @@
+﻿@model P309.Models.Projetos
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+@*
+    DisplayNameFor() - Nome de exibição do modelo
+    DisplayFor() - exibição do valor do campo
+    ActionLink()  - retorna para a ação inserida
+*@
+
+<h2>Detalhes do projeto</h2>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            Responsável @* Martelado pois DisplayFor não permite escolher um nome para o item a mostrar *@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contacto.Nome)
+        </dd>
+
+        <dt>
+            Número do Projeto @* Martelado pois DisplayFor não permite escolher um nome para o item a mostrar *@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroProjeto)
+        </dd>
+
+        <dt>
+            Área @* Martelado pois DisplayFor não permite escolher um nome para o item a mostrar *@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Area)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+        <dt>
+            Data de Criação @* Martelado pois DisplayFor não permite escolher um nome para o item a mostrar *@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataDeCriaçao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notas)
+        </dd>
+
+    </dl>
+</div>
+
+@* Botões editar e voltar *@
+<p>
+    @Html.ActionLink("Editar", "Editar", new { id = Model.NumeroProjeto }) |
+    @Html.ActionLink("Voltar", "Index")
+</p>

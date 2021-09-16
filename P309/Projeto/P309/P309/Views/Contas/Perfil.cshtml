@@ -1,0 +1,59 @@
+﻿@model P309.Models.Conta
+
+@{
+    ViewBag.Title = "Perfil";
+}
+
+<h2>Perfil</h2>
+
+<h3>As suas credenciais de acesso</h3>
+
+@*
+    DisplayNameFor() - Nome de exibição do modelo
+    DisplayFor() - exibição do valor do campo
+    ActionLink()  - retorna para a ação inserida
+*@
+
+<table class="table">
+    <tr>
+        <th>
+            Nome de Utilizador @*DisplayNameFor() não permite inserção de string para alteração do nome de exibição*@
+        </th>
+        <th>
+            Palavra-Passe @*DisplayNameFor() não permite inserção de string para alteração do nome de exibição*@
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Role)
+        </th>
+    </tr>
+
+    <tr>
+        <td>
+            @Html.DisplayFor(model => model.NomeDeUtilizador)
+        </td>
+
+        <td>
+            @Html.DisplayFor(model => model.PalavraPasse)
+        </td>
+
+        <td>
+            @Html.DisplayFor(model => model.Role)
+            <label>
+                (0:Administrador, 1:Visualizador) 
+            </label>
+        </td>
+        <td>
+            @{int RoleUtilizador = (int)Session["RoleUtilizador"]; //Saber a Role do utilizador que está Logado
+            }
+            @if (RoleUtilizador == 0) //So pode editar as credenciais se for administador (role = 0)
+            {
+                @Html.ActionLink("Editar", "EditarPerfil", new { id = Model.ID })
+            }
+            else
+            {
+                <label> @ViewBag.NotAdmin</label>
+            }
+        </td>
+    </tr>
+</table>
+

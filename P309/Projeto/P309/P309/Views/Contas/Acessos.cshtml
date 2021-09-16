@@ -1,0 +1,84 @@
+﻿@model PagedList.IPagedList<P309.Models.Conta>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Acessos";
+}
+
+<h2>Acessos</h2>
+
+@*
+    BeginForm() - Criação de um formulário para aceitar dados do utilizador. Utilização do método POST e processamento realizado pelo método de ação do controlador
+    ActionLink() - retorna para a ação inserida
+    TextBox() - Campo para inserção de um atributo do tipo texto
+    DisplayFor() - exibição do valor do campo
+    PagedListPager() - faz o output da paginação
+*@
+
+<p>
+    @Html.ActionLink("Adicionar novo utilizador", "Criar")
+</p>
+
+@* campo para caixa de pesquisa  *@
+@using (Html.BeginForm("Acessos", "Contas", FormMethod.Get))
+{
+    <p>
+        Pesquisar por nome de utilizador: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Pesquisar" />
+    </p>
+}
+
+@* Os campos seguintes utilizam ViewBags do controlador para definir os os filtros e ordenações  *@
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Nome de Utilizador", "Acessos", new { sortOrder = ViewBag.NomeDeUtilizadorSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Palavra-Passe", "Acessos", new { sortOrder = ViewBag.PalavraPasseSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Role", "Acessos", new { sortOrder = ViewBag.RoleSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeDeUtilizador)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PalavraPasse)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Role)
+                @if (item.Role == 0) //Se Role 0 mostra que se trata de um administrador
+                {
+                    <label>
+                        <label> Administrador</label>
+                    </label>
+                }
+                @if (item.Role == 1) //Se Role 1 mostra que se trata de um Visualizador
+                {
+                    <label>
+                        <label> Visualizador</label>
+                    </label>
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Editar", new { id = item.ID }) |
+                @Html.ActionLink("Detalhes", "Detalhes", new { id = item.ID }) |
+                @Html.ActionLink("Eliminar", "Eliminar", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@* Código correspondente à view da paginação *@
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Acessos", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+

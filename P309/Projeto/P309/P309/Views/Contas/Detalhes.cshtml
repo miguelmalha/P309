@@ -1,0 +1,52 @@
+﻿@model P309.Models.Conta
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<h2>Detalhes do utilizador</h2>
+
+@*
+    DisplayNameFor() - Nome de exibição do modelo
+    DisplayFor() - exibição do valor do campo
+    ActionLink()  - retorna para a ação inserida
+*@
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Nome de Utilizador @* Martelado pois DisplayFor não permite escolher um nome para o item a mostrar *@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeDeUtilizador)
+        </dd>
+
+        <dt>
+            Palavra-Passe @* Martelado pois DisplayFor não permite escolher um nome para o item a mostrar *@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PalavraPasse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Role)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Role)
+            <label>
+                (0:Administrador, 1:Visualizador)@*Informar adefinição das Roles *@
+            </label>
+        </dd>
+
+    </dl>
+</div>
+
+@* Botões para editar e voltar *@
+<p>
+    @Html.ActionLink("Editar", "Editar", new { id = Model.ID }) |
+    @Html.ActionLink("Voltar", "Acessos")
+</p>

@@ -1,0 +1,160 @@
+﻿@model P309.Models.Empresas
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+
+<h2>Eliminar empresa</h2>
+
+@*
+    BeginForm() - Criação de um formulário para aceitar dados do utilizador. Utilização do método POST e processamento realizado pelo método de ação do controlador
+    ActionLink() - retorna para a ação inserida
+    TextBox() - Campo para inserção de um atributo do tipo texto
+    DisplayFor() - exibição do valor do campo
+    PagedListPager() - faz o output da paginação
+*@
+
+@if (@ViewBag.EmpresaPermanente == null) //Apenas mostra o header caso a empresa a eliminar não seja a permanente
+{
+    <h3>Tem a certeza de que deseja eliminar esta empresa?</h3>
+}
+<div class="form-group error">
+    @if (@ViewBag.EmpresaPermanente != null)  //Mostrar mensagem de erro caso se tente editar a empresa permanente
+    {
+        <label> @ViewBag.EmpresaPermanente</label>
+    }
+</div>
+
+@if (@ViewBag.EmpresaPermanente == null) //apenas mostra os dados caso a empresa a eliminar não seja a permanente
+{
+    <div>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Nome)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Nome)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.NIF)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NIF)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Endereço)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Endereço)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.País)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.País)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Localidade)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Localidade)
+            </dd>
+
+            <dt>
+                Código-Postal @* Martelado pois DisplayFor não permite escolher um nome para o item a mostrar *@
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CódigoPostal)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Site)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Site)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Telefone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Telefone)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IBAN)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IBAN)
+            </dd>
+
+            <dt>
+                Meio De Pagamento @* Martelado pois DisplayFor não permite escolher um nome para o item a mostrar *@
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MeioDePagamento)
+            </dd>
+
+            <dt>
+                Prazo de Pagamento @* Martelado pois DisplayFor não permite escolher um nome para o item a mostrar *@
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PrazoDePagamento)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Notas)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Notas)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm()) // Formulário para botão de Eliminar
+            {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Eliminar" class="btn btn-default" />
+                </div>
+            </div>
+        }
+
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Voltar", "Index")
+</div>
+
+
+<p class="error">@ViewBag.ErrorMessage</p>
+
+

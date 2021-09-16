@@ -1,0 +1,99 @@
+﻿@model P309.Models.Contactos
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<h2>Detalhes do contacto</h2>
+
+@*
+    DisplayNameFor() - Nome de exibição do modelo
+    DisplayFor() - exibição do valor do campo
+    ActionLink()  - retorna para a ação inserida
+*@
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefone)
+        </dd>
+
+        <dt>
+            Empresa @* Martelado pois DisplayFor não permite escolher um nome para o item a mostrar *@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Empresa.Nome)
+        </dd>
+
+
+        <dt>
+            NIF empresa @* Martelado pois DisplayFor não permite escolher um nome para o item a mostrar *@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Empresa.NIF)
+        </dd>
+
+
+        <dt>
+            Email empresa @* Martelado pois DisplayFor não permite escolher um nome para o item a mostrar *@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Empresa.Email)
+        </dd>
+
+
+        <dt>
+            Site empresa @* Martelado pois DisplayFor não permite escolher um nome para o item a mostrar *@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Empresa.Site)
+        </dd>
+
+        <dt>
+            IBAN empresa @* Martelado pois DisplayFor não permite escolher um nome para o item a mostrar *@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Empresa.IBAN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notas)
+        </dd>
+
+    </dl>
+</div>
+
+@* Botões para voltar e editar *@
+<p>
+    @Html.ActionLink("Editar", "Editar", new { id = Model.ID }) |
+    @Html.ActionLink("Voltar", "Index")
+</p>

@@ -1,0 +1,68 @@
+﻿@model P309.Models.Conta
+
+@{
+    ViewBag.Title = "Editar";
+}
+
+<h2>Editar utilizador</h2>
+
+@**
+    Html.BeginForm() - Criação de um formulário para aceitar dados do utilizador. Utilização do método POST e processamento realizado pelo método de ação do controlador
+    Html.LabelFor() - Label a mostrar ao utilizador que campo irá afetar
+    Html.EditorFor() - Campo para o utilizador inserir o valor do campo a afetar
+    ValidationMessageFor() - Retornar mensagens em caso de erro na inserção
+    ActionLink()  - retorna para a ação inserida
+*@
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="form-group">
+            @* Adicionada a string LabelText para alterar o nome do campo  *@
+            @Html.LabelFor(model => model.NomeDeUtilizador, "Nome de Utilizador", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NomeDeUtilizador, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NomeDeUtilizador, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @* Adicionada a string LabelText para alterar o nome do campo  *@
+            @Html.LabelFor(model => model.PalavraPasse, "Palavra-Passe", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PalavraPasse, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PalavraPasse, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Role, new { htmlAttributes = new { @class = "form-control" } })
+                @if (@ViewBag.RoleError != null) //Mensagem de erro caso a Role inserida não seja permitida
+                {
+                    <label>
+                        <label> @ViewBag.RoleError</label>
+                    </label>
+                }
+            </div>
+        </div>
+
+        <div class="form-group"> @*Botão para salvar*@
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Salvar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+@* Botão para voltar  *@
+<div>
+    @Html.ActionLink("Voltar", "Acessos")
+</div>

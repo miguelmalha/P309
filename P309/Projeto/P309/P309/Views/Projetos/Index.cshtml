@@ -1,0 +1,97 @@
+﻿@model PagedList.IPagedList<P309.Models.Projetos>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@*
+    BeginForm() - Criação de um formulário para aceitar dados do utilizador. Utilização do método POST e processamento realizado pelo método de ação do controlador
+    ActionLink() - retorna para a ação inserida
+    TextBox() - Campo para inserção de um atributo do tipo texto
+    DisplayFor() - exibição do valor do campo
+    PagedListPager() - faz o output da paginação
+*@
+
+<h2>Projetos</h2>
+
+@* Link para adicionar novo projeto  *@
+<p>
+    @Html.ActionLink("Adicionar novo projeto", "Criar")
+</p>
+
+@* campo para caixa de pesquisa  *@
+@using (Html.BeginForm("Index", "Projetos", FormMethod.Get))
+{
+    <p>
+        Pesquisar por projeto: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Pesquisar" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        @* Os campos seguintes utilizam ViewBags do controlador para definir os os filtros e ordenações  *@
+        <th>
+            @Html.ActionLink("Nome", "Index", new { sortOrder = ViewBag.NomeSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Responsável", "Index", new { sortOrder = ViewBag.ResponsavelSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Número do Projeto", "Index", new { sortOrder = ViewBag.NumeroProjetoSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Área", "Index", new { sortOrder = ViewBag.AreaSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Estado", "Index", new { sortOrder = ViewBag.EstadoSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Data de Criação", "Index", new { sortOrder = ViewBag.DataDeCriacaoSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Notas", "Index", new { sortOrder = ViewBag.NotasSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contacto.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroProjeto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Area)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataDeCriaçao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notas)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Editar", new { id = item.NumeroProjeto }) |
+                @Html.ActionLink("Detalhes", "Detalhes", new { id = item.NumeroProjeto }) |
+                @Html.ActionLink("Eliminar", "Eliminar", new { id = item.NumeroProjeto })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@* Código correspondente à view da paginação *@
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
