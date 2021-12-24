@@ -1,0 +1,21 @@
+﻿@model IEnumerable<P309_2.Models.UserViewModel>
+
+@{
+    ViewBag.Title = "System Users";
+}
+<h2>@ViewBag.Title</h2>
+
+<div>
+
+        @foreach (var user in Model)
+        {
+            <p>
+                <strong> Email: </strong> @user.Email |  <strong> Role: </strong> @user.Role
+            </p>
+        }
+
+</div>
+
+<div>
+    @Html.ActionLink("Back", "Index")
+</div>

@@ -1,0 +1,101 @@
+﻿@model P309_2.Models.Projects
+
+
+@{
+    ViewBag.Title = "Project Information";
+}
+
+<h2>@ViewBag.Title</h2>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ProjectNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ProjectNumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Development_Stage_Id)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Development_Stage.Development_Stage)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Development_Area_Id)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Development_Area.Development_Area)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Company_Id)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Company.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Observations)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Observations)
+            </dd>
+
+            <dt>
+                Project Logs
+            </dt>
+            <dd>
+                <table class="table">
+                    <tr>
+                        <th>Description</th>
+                        <th>Created By</th>
+                        <th>Created</th>
+                    </tr>
+                    @foreach (var item in Model.Logs)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Created)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </dd>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ProjectNumber }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

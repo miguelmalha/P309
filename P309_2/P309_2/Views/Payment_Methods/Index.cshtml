@@ -1,0 +1,63 @@
+﻿@model PagedList.IPagedList<P309_2.Models.Payment_Methods>
+@using PagedList.Mvc;
+
+
+@{
+    ViewBag.Title = "Payment Methods";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <p>
+        @Html.ActionLink("New Payment Method", "Create")
+    </p>
+
+    @using (Html.BeginForm("Index", "Payment_Methods", FormMethod.Get))
+    {
+        <p>
+            Search by Payment Method: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+            <input type="submit" value="Search" />
+        </p>
+    }
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.ActionLink("Method", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Payment_Method)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) 
+                    @*|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+    <div>
+        @Html.ActionLink("Back to Company Creation", "Back_to_company_creation")
+    </div>
+
+</body>
+</html>

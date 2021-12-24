@@ -1,0 +1,90 @@
+﻿@model PagedList.IPagedList<P309_2.Models.Projects>
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Projects";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <p>
+        @Html.ActionLink("New Project", "Create")
+    </p>
+
+    @using (Html.BeginForm("Index", "Projects", FormMethod.Get))
+    {
+        <p>
+            Search by Project: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+            <input type="submit" value="Search" />
+        </p>
+    }
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @Html.ActionLink("Project Number", "Index", new { sortOrder = ViewBag.ProjNumberSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @Html.ActionLink("Project Area", "Index", new { sortOrder = ViewBag.AreaSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @Html.ActionLink("Current Stage", "Index", new { sortOrder = ViewBag.StageSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @Html.ActionLink("Project Owner", "Index", new { sortOrder = ViewBag.CompanySortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @Html.ActionLink("Observations", "Index", new { sortOrder = ViewBag.ObservationsSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProjectNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Development_Area.Development_Area)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Development_Stage.Development_Stage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Company.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Observations)
+                </td>
+                <td>
+                    @Html.ActionLink("See more", "Details", new { id = item.ProjectNumber }) |
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ProjectNumber }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ProjectNumber })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+</body>
+</html>

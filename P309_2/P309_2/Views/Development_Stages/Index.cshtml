@@ -1,0 +1,58 @@
+﻿@model PagedList.IPagedList<P309_2.Models.Development_Stages>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Project Stages";
+}
+
+<h2>@ViewBag.Title</h2>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <p>
+        @Html.ActionLink("New Project Stage", "Create")
+    </p>
+
+    @using (Html.BeginForm("Index", "Development_Stages", FormMethod.Get))
+    {
+        <p>
+            Search by Project Stage: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+            <input type="submit" value="Search" />
+        </p>
+    }
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.ActionLink("Stage", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Development_Stage)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) 
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+    <div>
+        @Html.ActionLink("Back to Project Creation", "Back_to_project_creation")
+    </div>
+</body>
+</html>

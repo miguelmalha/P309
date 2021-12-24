@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1d73c0e8ea66476d95f8a057144f191e" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="Model.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetRole" Width="1.5" PointX="8.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetUserClaim" Width="1.5" PointX="13.25" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetUserLogin" Width="1.5" PointX="13.25" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetUser" Width="1.5" PointX="11" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Company" Width="1.75" PointX="5.125" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Contact" Width="1.75" PointX="2.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Development_Areas" Width="1.75" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Development_Stages" Width="1.875" PointX="7.875" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Payment_Methods" Width="1.75" PointX="5.125" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Project_Logs" Width="1.75" PointX="10.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Project" Width="1.875" PointX="7.875" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_Companies_dbo_Payment_Methods_Payment_Method_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_Contacts_dbo_Companies_Company_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_Projects_dbo_Companies_Company_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_Projects_dbo_Development_Areas_Development_Area_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_Projects_dbo_Development_Stages_Development_Stage_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_Project_Logs_dbo_Projects_Project_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

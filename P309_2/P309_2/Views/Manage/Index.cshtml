@@ -1,0 +1,31 @@
+﻿@model P309_2.Models.IndexViewModel
+@{
+    ViewBag.Title = "Manage Account";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div>
+    <dl class="dl-horizontal">
+        <dt>Password:</dt>
+        <dd>
+            [
+            @Html.ActionLink("Change Password", "ChangePassword")
+            ]
+        </dd>
+        <dt>System Users:</dt>
+        <dd>
+            [
+            @Html.ActionLink("See Users", "ListUser")
+            ]
+        </dd>
+        <dt>Register:</dt>
+        <dd>
+            [
+            @Html.ActionLink("Add New User", "Register")
+            ]
+        </dd>
+
+    </dl>
+</div>

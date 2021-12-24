@@ -1,0 +1,116 @@
+﻿@model P309_2.Models.Companies
+
+@{
+    ViewBag.Title = "Company Information";
+}
+
+<h2>@ViewBag.Title</h2>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.NIF)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NIF)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Payment_Method.Payment_Method)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Payment_Method.Payment_Method)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Payment_Day)
+            </dt>
+
+            <dd>
+                Monthly at day: @Html.DisplayFor(model => model.Payment_Day)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Observations)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Observations)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.UserId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.UserId)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Created)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Created)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Updated)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Updated)
+            </dd>
+
+            <dt>
+                Associated Contacts
+            </dt>
+            <dd>
+                <table class="table">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                    </tr>
+                    @foreach (var item in Model.Contacts)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PhoneNumber)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </dd>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
