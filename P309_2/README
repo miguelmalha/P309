@@ -1,9 +1,3 @@
-O presente dossier de projeto é composto por três pastas principais:
-
-  •	Relatórios: Esta é composta pelos três relatórios realizados (INIP309, RPP309 e RFP309);
-  •	Poster: Contem o poster referente ao projeto (Poster_P309);
-  •	Código Fonte: Constituída pelos diversos ficheiros que compõe o projeto.
-
 Por forma a proceder à instalação e execução do projeto, é necessário que tenha instalado o ambiente de desenvolvimento “Visual Studio”. Após a sua instalação, deverá fazer o download da pasta referente ao código fonte. De seguida, no Visual Studio, deverá selecionar a opção “Abrir projeto” e escolher a pasta descarregada. Por fim, terá apenas de pôr o projeto a correr.
 
 Quando o sistema se inicia, terá de iniciar sessão. Por predefinição, foi criado um utilizador contendo as seguintes credenciais de acesso:
