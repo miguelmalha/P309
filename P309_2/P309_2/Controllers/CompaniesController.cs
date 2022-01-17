@@ -171,8 +171,8 @@ namespace P309_2.Controllers
 
                 try 
                 {
-                    var ExistingNIF = db.Company.Where(a => a.NIF == companies.NIF).First(); //Procurar se já existe um nif com o valor digitado. Caso não haja, o programa salta para a exceção e cria a empresa 
-                    ViewBag.ExistingNIF = "NIF already taken"; // se for encontrado nif já existente, avisa o utilizador do mesmo
+                    var ExistingNIF = db.Company.Where(a => a.NIF == companies.NIF).First(); 
+                    ViewBag.ExistingNIF = "NIF already taken"; 
                     ViewBag.Payment_Method_Id = new SelectList(db.Payment_Method, "Id", "Payment_Method", companies.Payment_Method_Id);
                     return View(companies);
                 }
@@ -180,8 +180,8 @@ namespace P309_2.Controllers
                 {
                     try 
                     {
-                        var ExistingName = db.Company.Where(a => a.Name == companies.Name).First(); //Procurar se já existe um nif com o valor digitado. Caso não haja, o programa salta para a exceção e cria a empresa 
-                        ViewBag.ExistingName = "Name already taken"; // se for encontrado nif já existente, avisa o utilizador do mesmo
+                        var ExistingName = db.Company.Where(a => a.Name == companies.Name).First(); 
+                        ViewBag.ExistingName = "Name already taken"; 
                         ViewBag.Payment_Method_Id = new SelectList(db.Payment_Method, "Id", "Payment_Method", companies.Payment_Method_Id);
                         return View(companies);
                     }
@@ -190,7 +190,7 @@ namespace P309_2.Controllers
                         try
                         {
                             var ExistingEmail = db.Contact.Where(a => a.Email != null && a.Email == email).First();
-                            ViewBag.ExistingEmail = "Email already taken"; // se for encontrado nif já existente, avisa o utilizador do mesmo
+                            ViewBag.ExistingEmail = "Email already taken";
                             ViewBag.Payment_Method_Id = new SelectList(db.Payment_Method, "Id", "Payment_Method", companies.Payment_Method_Id);
                             return View(companies);
                         }
@@ -199,7 +199,7 @@ namespace P309_2.Controllers
                             try
                             {
                                 var ExistingPhone = db.Contact.Where(a => a.PhoneNumber != null && a.PhoneNumber == phone).First();
-                                ViewBag.ExistingPhone = "Phone already taken"; // se for encontrado nif já existente, avisa o utilizador do mesmo
+                                ViewBag.ExistingPhone = "Phone already taken";
                                 ViewBag.Payment_Method_Id = new SelectList(db.Payment_Method, "Id", "Payment_Method", companies.Payment_Method_Id);
                                 return View(companies);
                             }
