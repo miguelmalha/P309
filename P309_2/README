@@ -1,13 +1,20 @@
-Por forma a proceder à instalação e execução do projeto, é necessário que tenha instalado o ambiente de desenvolvimento “Visual Studio”. Após a sua instalação, deverá fazer o download da pasta referente ao código fonte. De seguida, no Visual Studio, deverá selecionar a opção “Abrir projeto” e escolher a pasta descarregada. Por fim, terá apenas de pôr o projeto a correr.
+Por forma a proceder à instalação e execução do projeto, é necessário que tenha instalado o ambiente de desenvolvimento “Visual Studio” no seu computador Windows. Após a sua instalação, deverá fazer o download da pasta referente ao código fonte. De seguida, no Visual Studio, deverá selecionar a opção “Abrir projeto” e escolher a pasta descarregada. Por forma a correr o projeto, deve selecionar, como ficheiro de inicialização, o ficheiro com o nome “P309_2.sln”.
+
+Notas:
+
+  1. Caso o ambiente de desenvolvimento solicite atualizações, deverá aceitar as mesmas;
+  2. Não existe a necessidade de instalação de um servidor de base de dados pois será automaticamente gerada uma base de dados local (Microsoft SQL Server Express).
 
 Quando o sistema se inicia, terá de iniciar sessão. Por predefinição, foi criado um utilizador contendo as seguintes credenciais de acesso:
 
-  •	Email: admin@admin.pt
-  •	Palavra-passe: AdminPassword
+  • Email: “admin@admin.pt”;
+  • Palavra-passe: “AdminPassword”.
 
 Após o início de sessão, poderá utilizar o sistema a seu gosto.
 
-Em caso de dificuldade, contactar: miguel.malha1997@gmail.com
+Em caso de dificuldade, contactar:
+
+miguel.malha1997@gmail.com
 
 Melhores cumprimentos,
 Miguel Malha nº42090
