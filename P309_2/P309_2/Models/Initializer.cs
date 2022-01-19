@@ -9,7 +9,7 @@ using Microsoft.AspNet.Identity;
 
 namespace P309_2.Models
 {
-    public class Initializer : DropCreateDatabaseAlways<ApplicationDbContext>
+    public class Initializer : DropCreateDatabaseIfModelChanges<ApplicationDbContext>
     {
         protected override void Seed(ApplicationDbContext context)
          {
